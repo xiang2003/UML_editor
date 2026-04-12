@@ -20,7 +20,6 @@ public class ToolIcon implements Icon {
 
         switch (type.toLowerCase()) {
             case "select" -> {
-                // 畫箭頭
                 int[] px = {x+5, x+25, x+15, x+15};
                 int[] py = {y+5, y+15, y+15, y+25};
                 g2.fillPolygon(px, py, 4);

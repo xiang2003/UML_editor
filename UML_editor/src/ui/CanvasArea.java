@@ -1,9 +1,9 @@
 package ui;
 
-
 import controller.mode.*;
 import model.CompositeObject;
 import model.Shape;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -62,7 +62,7 @@ public class CanvasArea extends JPanel {
     // Use Case C: 將物件移至最上層 (Depth 最小)
     public void moveShapeToFront(Shape s) {
         if (shapes.remove(s)) {
-            shapes.add(s); // 加在 List 最後面，繪圖時最後畫 (最上層)
+            shapes.add(s);
         }
     }
 

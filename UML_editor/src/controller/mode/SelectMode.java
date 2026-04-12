@@ -168,14 +168,4 @@ public class SelectMode extends DefaultMode {
         }
         if (changed) canvas.repaint();
     }
-
-    private void handleResize(BasicObject obj, Point current) {
-        // 以左上角座標計算新的寬高
-        int newWidth = current.x - obj.getX();
-        int newHeight = current.y - obj.getY();
-        if (newWidth < 20) newWidth = 20;
-        if (newHeight < 20) newHeight = 20;
-        obj.setWidth(newWidth);
-        obj.setHeight(newHeight);
-    }
 }

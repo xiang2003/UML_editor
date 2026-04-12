@@ -1,6 +1,7 @@
 package ui;
 
 import controller.EventBus;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

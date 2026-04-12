@@ -28,4 +28,19 @@ public abstract class BasicObject extends Shape {
         }
         return null;
     }
+    protected void drawLabelAndPorts(Graphics g) {
+        if (label != null && !label.isEmpty()) {
+            g.setColor(Color.BLACK);
+            FontMetrics fm = g.getFontMetrics();
+            int textWidth = fm.stringWidth(label);
+            int textHeight = fm.getAscent();
+
+            int tx = x + (width - textWidth) / 2;
+            int ty = y + (height + textHeight) / 2 - 2;
+
+            g.drawString(label, tx, ty);
+        }
+
+        drawPorts(g);
+    }
 }

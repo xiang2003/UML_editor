@@ -8,7 +8,6 @@ import model.Shape;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MainFrame extends JFrame {
     private CanvasArea canvas;
