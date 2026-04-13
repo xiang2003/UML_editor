@@ -2,6 +2,7 @@ package model;
 
 import java.awt.*;
 
+//空心箭頭型連線
 public class GeneralizationLink extends Link {
 
     public GeneralizationLink(BasicObject source, Port sourcePort, BasicObject target, Port targetPort) {
@@ -13,7 +14,7 @@ public class GeneralizationLink extends Link {
         double angle = Math.atan2(end.y - start.y, end.x - start.x);
         int size = 12;
 
-        // 計算三角形的三個頂點
+        // 三角形頂點座標
         int[] xPoints = {
                 end.x,
                 (int) (end.x - size * Math.cos(angle - Math.PI / 6)),

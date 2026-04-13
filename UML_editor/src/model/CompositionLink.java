@@ -2,6 +2,7 @@ package model;
 
 import java.awt.*;
 
+//菱形型連線
 public class CompositionLink extends Link {
 
     public CompositionLink(BasicObject source, Port sourcePort, BasicObject target, Port targetPort) {
@@ -13,7 +14,7 @@ public class CompositionLink extends Link {
         double angle = Math.atan2(end.y - start.y, end.x - start.x);
         int size = 10;
 
-        // 組合線的菱形通常畫在「起點」 (Source)
+        // 菱形頂點座標
         int[] xPoints = {
                 start.x,
                 (int) (start.x + size * Math.cos(angle - Math.PI / 4)),
@@ -27,7 +28,7 @@ public class CompositionLink extends Link {
                 (int) (start.y + size * Math.sin(angle + Math.PI / 4))
         };
 
-        // 畫空心菱形
+        //畫空心菱形
         g.setColor(Color.WHITE);
         g.fillPolygon(xPoints, yPoints, 4);
         g.setColor(Color.BLACK);

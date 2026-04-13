@@ -10,9 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ToolBar extends JPanel {
-    private Map<String, JButton> buttons = new HashMap<>();
+    private Map<String, JButton> buttons;
     private String currentPermanentMode = "select";
     public ToolBar() {
+        buttons = new HashMap<>();
+
         setLayout(new GridLayout(6, 1, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
         setBackground(Color.WHITE);
@@ -44,18 +46,14 @@ public class ToolBar extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (isDragCreate) {
-                    // --- Use Case A - 步驟 2 ---
-                    // 1. 先把「原本變黑的那個按鈕」變回白色
                     resetAllButtonVisuals();
-                    // 2. 讓現在這個按鈕變黑
                     btn.setBackground(Color.BLACK);
                     btn.setForeground(Color.WHITE);
                     btn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
                     EventBus.getInstance().publishModeChange("prepare_" + command);
                 } else {
-                    // 一般模式切換
-                    currentPermanentMode = command; // 紀錄為永久模式
+                    currentPermanentMode = command;
                     setActiveButton(command);
                     EventBus.getInstance().publishModeChange(command);
                 }
@@ -64,13 +62,10 @@ public class ToolBar extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (isDragCreate) {
-                    // --- Use Case A - 步驟 6 (前半部) ---
-                    // 點擊結束，先把自己的顏色洗掉
                     btn.setBackground(Color.WHITE);
                     btn.setForeground(Color.BLACK);
                     btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
-                    // 發送訊息讓 MainFrame 去處理「還原原模式」
                     Point screenPoint = e.getLocationOnScreen();
                     EventBus.getInstance().publishMouseReleased(command, screenPoint);
                 }
@@ -79,6 +74,7 @@ public class ToolBar extends JPanel {
         buttons.put(command, btn);
         add(btn);
     }
+    //調整按鈕樣式
     public void resetAllButtonVisuals() {
         for (JButton btn : buttons.values()) {
             btn.setBackground(Color.WHITE);
@@ -86,9 +82,7 @@ public class ToolBar extends JPanel {
             btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         }
     }
-    /**
-     * 核心邏輯：控制背景變黑
-     */
+
     public void setActiveButton(String command) {
         resetAllButtonVisuals();
         JButton target = buttons.get(command);

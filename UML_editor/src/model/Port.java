@@ -10,7 +10,7 @@ public class Port {
         this.relativeX = rx;
         this.relativeY = ry;
     }
-    // 在 Port.java 中加上
+
     public double getRelativeX() { return relativeX; }
     public double getRelativeY() { return relativeY; }
 
@@ -25,7 +25,7 @@ public class Port {
         int px = (int) (parentX + relativeX * parentW);
         int py = (int) (parentY + relativeY * parentH);
 
-        // 增加感應邊距，例如感應範圍設為 12 像素
+        // 增加感應邊距
         int hitArea = 12;
         Rectangle area = new Rectangle(px - hitArea / 2, py - hitArea / 2, hitArea, hitArea);
         return area.contains(p);

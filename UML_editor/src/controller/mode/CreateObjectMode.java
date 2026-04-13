@@ -1,28 +1,31 @@
 package controller.mode;
 
-
 import model.RectObject;
 import model.OvalObject;
-import ui.CanvasArea; // 假設畫布提供 addShape 方法
-import java.awt.event.MouseEvent;
+import model.Shape;
+import ui.CanvasArea;
+
+import java.awt.Point;
 
 public class CreateObjectMode extends DefaultMode {
-    private String shapeType;
     private CanvasArea canvas;
+    private String shapeType;
 
     public CreateObjectMode(CanvasArea canvas, String shapeType) {
         this.canvas = canvas;
         this.shapeType = shapeType;
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // Use Case A: 根據類型在點擊處建立物件
+    public void executeCreate(Point p) {
+        Shape newShape;
         if (shapeType.equalsIgnoreCase("rect")) {
-            canvas.addShape(new RectObject(e.getX(), e.getY()));
-        } else if (shapeType.equalsIgnoreCase("oval")) {
-            canvas.addShape(new OvalObject(e.getX(), e.getY()));
+            newShape = new RectObject(p.x, p.y);
+        } else {
+            newShape = new OvalObject(p.x, p.y);
         }
-        canvas.repaint();
+
+        canvas.addShape(newShape);
+        System.out.println("Object created via CreateObjectMode: " + shapeType);
     }
+
 }
