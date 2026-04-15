@@ -17,15 +17,16 @@ public class CreateObjectMode extends DefaultMode {
     }
 
     public void executeCreate(Point p) {
-        Shape newShape;
+        Shape newShape = null;
         if (shapeType.equalsIgnoreCase("rect")) {
             newShape = new RectObject(p.x, p.y);
-        } else {
+        } 
+        else if(shapeType.equalsIgnoreCase("oval")){
             newShape = new OvalObject(p.x, p.y);
         }
 
         canvas.addShape(newShape);
-        System.out.println("Object created via CreateObjectMode: " + shapeType);
+        System.out.println("Object created: " + shapeType);
     }
 
 }
